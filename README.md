@@ -16,7 +16,7 @@ Assuntos tratados na disciplina:
   - Programação Imperativa
 - Construção de Aplicativos com Interface Gráfica utilizando GTK
 
-## Aulas 1 e 2
+## Aula 01
 - Licenças de _Software_
   - _Opensource_
   - _Software_ livre (FOSS)
@@ -24,7 +24,11 @@ Assuntos tratados na disciplina:
   - _Freeware_
   - _Software_ proprietário
 - Sistema Operacional, Kernel, Libc, Shell
+
+## Aula 02
 - Instalação de Sistema Operacional Baseado em Linux: **Debian GNU/Linux 11 Codename bullseye**
+  - [Tutorial](aula-02/README.md)
+- Partições de HD
 
 ## Aula 03
 
