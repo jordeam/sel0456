@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "fact.h"
 
 unsigned int fact(unsigned int n) {
   if (n == 0 || n == 1)
