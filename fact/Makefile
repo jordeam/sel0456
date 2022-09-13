@@ -1,5 +1,5 @@
 GCC = gcc
 
-main: main.c
+main: main.c fact.c
 	$(GCC) $^ -g -lm -o $@
 
