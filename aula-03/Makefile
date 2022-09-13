@@ -1,7 +1,7 @@
 GCC = gcc
 
 exemplo-asm: exemplo-asm.c
-	$(GCC) $< -g -o $@
+	$(GCC) $< -g -lm -o $@
 
 exemplo-asm.s: exemplo-asm.c
-	$(GCC) -S -g $<
+	$(GCC) -S -O2 $<
