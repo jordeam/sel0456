@@ -15,9 +15,6 @@
 - Realizar configuração inicial de idioma e teclado
 ### Redimensionar Partição do Windows
 - Verificar conexão com internet
-- Instalar GParted: `apt install gparted` (no terminal)
-- Abrir GParted, deve aparecer no menu de aplicativos
-- Selecionar partição para reduzir
 - Clicar com botão direito do mouse, "Resize" e diminuir para ter espaço suficiente para instalação do Linux
 - Clicar com botão direito no espaço não alocado e criar nova partição:
 	- Usar filesystem EXT4
@@ -32,10 +29,12 @@
 - Prosseguir com configurações:
 	- Localização (São Paulo)
 	- Teclado (Portuguese (BR))
-	- Particionamento (Manual)
-		- Verificar instalação do bootloader (GRUB) na MBR do disco principal (usualmente sda)
-		- Selecionar partição EXT4 criada, colocar para formatar e identificar ponto de montagem como "/"
-		- Selecionar partição swap criada, colocar para formatar e identificar ponto de montagem como swap
+	- Particionamento: Caso existam dados no HD que você quer preservar, é necessário se fazer a partição manualmente, caso não existam dados, pode-se escolher as opções que particionrão o HD automaticamente. Para a partição manual, deve-se verificar se existe espaço disponível para a instalação. Caso não exista, vai ser nbecessário ou apagar uma partição ou encolher uma partição.
+		- Caso necessite encolher uma partição, deve-se editar essa partição, podendo escolher o novo tamanho. Com o encolhimento, irá sobrar espaço disponível para as novas partições.
+		- Deve-se verificar se existe já uma partição `swap`, caso não exista, é necessário criar uma com o tamanho da RAM do computador, no mínimo.
+		- Caso o número de partições finais excedam 4, que é o máximo de partições primárias possíveis, é necessário criar uma partição estendida com tamanho igual ao espaço livre e então, as novas partições devem ser criadas dentro dela.
+		- Para a partição com o sistema Debian GNU/Linux, esta deve-se ser criada com o tipo ext4, assinalar opção de formatar e escolher o ponto de montagem em `/`.
+		- Ao final do particionamento, deve-se verificar instalação do bootloader (GRUB) na MBR do disco principal (usualmente /dev/sda)
 	- Usuário (Criar novo usuário e senha)
 	- Sumário (Confirmar informações)
 - Aguardar a conclusão da instalação
