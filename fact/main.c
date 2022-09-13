@@ -1,4 +1,11 @@
 #include <stdio.h>
+#include "fact.h"
+
+unsigned int fact(unsigned int n) {
+  if (n == 0 || n == 1)
+    return 1;
+  return n * fact(n - 1);
+}
 
 int main() {
   int n = 10, i, acc = 1;
@@ -6,7 +13,7 @@ int main() {
     acc *= i; // acc * i
   }
 
-  printf("n!=%d\n", acc);
+  printf("n!=%d ou %d\n", acc, fact(10));
 
   return 0;
 }
