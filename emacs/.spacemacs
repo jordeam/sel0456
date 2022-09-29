@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(php
+     perl5
      lsp
      rust
      cmake
@@ -55,11 +56,11 @@ This function should only modify configuration layer settings."
      git
      helm
      latex
-     (python :variables python-backend 'anaconda python-fill-column 180)
+     (python :variables python-backend 'anaconda)
      ;; lsp
      markdown
      multiple-cursors
-     org
+     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -102,9 +103,13 @@ It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
-   ;; If non-nil then enable support for the portable dumper. You'll need
-   ;; to compile Emacs 27 from source following the instructions in file
+   ;; If non-nil then enable support for the portable dumper. You'll need to
+   ;; compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
+   ;;
+   ;; WARNING: pdumper does not work with Native Compilation, so it's disabled
+   ;; regardless of the following setting when native compilation is in effect.
+   ;;
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
@@ -189,6 +194,13 @@ It should only modify the values of Spacemacs settings."
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
 
+   ;; Scale factor controls the scaling (size) of the startup banner. Default
+   ;; value is `auto' for scaling the logo automatically to fit all buffer
+   ;; contents, to a maximum of the full image height and a minimum of 3 line
+   ;; heights. If set to a number (int or float) it is used as a constant
+   ;; scaling factor for the default logo size.
+   dotspacemacs-startup-banner-scale 'auto
+
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -211,6 +223,11 @@ It should only modify the values of Spacemacs settings."
    ;; The minimum delay in seconds between number key presses. (default 0.4)
    dotspacemacs-startup-buffer-multi-digit-delay 0.4
 
+   ;; If non-nil, show file icons for entries and headings on Spacemacs home buffer.
+   ;; This has no effect in terminal or if "all-the-icons" package or the font
+   ;; is not installed. (default nil)
+   dotspacemacs-startup-buffer-show-icons nil
+
    ;; Default major mode for a new empty buffer. Possible values are mode
    ;; names such as `text-mode'; and `nil' to use Fundamental mode.
    ;; (default `text-mode')
@@ -221,7 +238,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, *scratch* buffer will be persistent. Things you write down in
    ;; *scratch* buffer will be saved and restored automatically.
-   dotspacemacs-scratch-buffer-persistent nil
+   dotspacemacs-scratch-buffer-persistent t
 
    ;; If non-nil, `kill-buffer' on *scratch* buffer
    ;; will bury it instead of killing.
@@ -274,7 +291,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Major mode leader key is a shortcut key which is the equivalent of
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
-   dotspacemacs-major-mode-leader-key ","
+   dotspacemacs-major-mode-leader-key "M-n"
 
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m" for terminal mode, "<M-return>" for GUI mode).
@@ -398,8 +415,8 @@ It should only modify the values of Spacemacs settings."
    ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
    ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
    ;; numbers are relative. If set to `visual', line numbers are also relative,
-   ;; but lines are only visual lines are counted. For example, folded lines
-   ;; will not be counted and wrapped lines are counted as multiple lines.
+   ;; but only visual lines are counted. For example, folded lines will not be
+   ;; counted and wrapped lines are counted as multiple lines.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
    ;;   :visual nil
@@ -490,7 +507,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
-   ;; Show trailing whitespace (default t)
+   ;; Color highlight trailing whitespace in all prog-mode and text-mode derived
+   ;; modes such as c++-mode, python-mode, emacs-lisp, html-mode, rst-mode etc.
+   ;; (default t)
    dotspacemacs-show-trailing-whitespace t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
@@ -500,14 +519,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
 
-   ;; If non nil activate `clean-aindent-mode' which tries to correct
-   ;; virtual indentation of simple modes. This can interfer with mode specific
+   ;; If non-nil activate `clean-aindent-mode' which tries to correct
+   ;; virtual indentation of simple modes. This can interfere with mode specific
    ;; indent handling like has been reported for `go-mode'.
    ;; If it does deactivate it here.
    ;; (default t)
    dotspacemacs-use-clean-aindent-mode t
 
-   ;; Accept SPC as y for prompts if non nil. (default nil)
+   ;; Accept SPC as y for prompts if non-nil. (default nil)
    dotspacemacs-use-SPC-as-y nil
 
    ;; If non-nil shift your number row to match the entered keyboard layout
@@ -527,7 +546,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil
 
    ;; If nil the home buffer shows the full path of agenda items
-   ;; and todos. If non nil only the file name is shown.
+   ;; and todos. If non-nil only the file name is shown.
    dotspacemacs-home-shorten-agenda-source nil
 
    ;; If non-nil then byte-compile some of Spacemacs files.
@@ -539,21 +558,24 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+)
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
-If you are unsure, try setting them in `dotspacemacs/user-config' first.")
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
+)
 
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
-dump.")
+dump."
+)
 
 
 (defun dotspacemacs/user-config ()
@@ -569,6 +591,9 @@ before packages are loaded."
   (global-set-key "\C-e" 'electric-buffer-list)
   (global-set-key "\C-v" 'yank)
   (global-set-key "\C-z" 'undo-only)
+  (global-set-key [insert] 'kill-ring-save)
+  ;; gnuplot-mode
+  (add-to-list 'auto-mode-alist '("\\.gp\\'" . gnuplot-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -593,7 +618,6 @@ This function is called at the very end of Spacemacs initialization."
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
- '(ede-project-directories '("/home/jrm/Code/Super-Mario-Bros"))
  '(evil-want-Y-yank-to-eol nil)
  '(helm-allow-mouse t)
  '(helm-completion-style 'helm)
@@ -601,22 +625,19 @@ This function is called at the very end of Spacemacs initialization."
  '(helm-grep-ignored-directories
    '("SCCS/" "RCS/" "CVS/" "MCVS/" ".svn/" ".git/" ".hg/" ".bzr/" "_MTN/" "_darcs/" "{arch}/" ".gvfs/" "build/"))
  '(helm-grep-ignored-files
-   '(".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.out" "*.elf" "*.obj" "*.make"))
+   '(".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.out" "*.elf" "*.obj" "*.map" "*.xml"))
  '(indent-guide-global-mode t)
  '(lsp-pyls-plugins-flake8-max-line-length 160)
  '(lsp-pyls-plugins-pycodestyle-max-line-length 160)
  '(lsp-pylsp-plugins-flake8-max-line-length 160)
  '(lsp-pylsp-plugins-pycodestyle-max-line-length 160)
  '(package-selected-packages
-   '(lsp-ui lsp-python-ms lsp-pyright lsp-origami origami lsp-latex helm-lsp flycheck-ycmd flycheck-rtags flycheck-pos-tip ccls toml-mode ron-mode racer pos-tip rust-mode flycheck-rust cargo sqlup-mode sql-indent tern npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags ggtags dap-mode lsp-treemacs bui lsp-mode counsel-gtags yaml-mode csv-mode orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-contrib org org-cliplink org-brain helm-org-rifle gnuplot evil-org yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-reftex company-math company-auctex company-anaconda auto-yasnippet ac-ispell auto-complete yasnippet web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode htmlize simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data company add-node-modules-path yapfify treemacs-magit treemacs-evil sphinx-doc smeargle pytest pyenv-mode py-isort poetry pippel pipenv pyvenv pip-requirements nose mmm-mode math-symbol-lists markdown-toc live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ gh-md forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient evil-easymotion cython-mode browse-at-remote blacken auctex anaconda-mode pythonic ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs cfrs pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize all-the-icons spaceline powerline restart-emacs request rainbow-delimiters quickrun popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file nameless multi-line shut-up macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck flycheck-elsa flx-ido flx fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils pkg-info epl elisp-slime-nav editorconfig dumb-jump s drag-stuff dired-quick-sort define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol ht dash auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el hydra lv hybrid-mode font-lock+ evil goto-chg dotenv-mode diminish bind-map bind-key async))
+   '(phpunit phpcbf php-extras php-auto-yasnippets geben drupal-mode company-phpactor phpactor composer php-runtime company-php ac-php-core xcscope php-mode lsp-ui lsp-origami origami lsp-latex helm-lsp flycheck-ycmd flycheck-rtags flycheck-pos-tip ccls toml-mode ron-mode racer pos-tip rust-mode flycheck-rust cargo sqlup-mode sql-indent tern npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags ggtags dap-mode lsp-treemacs bui lsp-mode counsel-gtags yaml-mode csv-mode orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-contrib org org-cliplink org-brain helm-org-rifle gnuplot evil-org yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-reftex company-math company-auctex company-anaconda auto-yasnippet ac-ispell auto-complete yasnippet web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode htmlize simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data company add-node-modules-path yapfify treemacs-magit treemacs-evil sphinx-doc smeargle pytest pyenv-mode py-isort poetry pippel pipenv pyvenv pip-requirements nose mmm-mode math-symbol-lists markdown-toc live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ gh-md forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient evil-easymotion cython-mode browse-at-remote blacken auctex ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs cfrs pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize all-the-icons spaceline powerline restart-emacs request rainbow-delimiters quickrun popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file nameless multi-line shut-up macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck flycheck-elsa flx-ido flx fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils pkg-info epl elisp-slime-nav editorconfig dumb-jump s drag-stuff dired-quick-sort define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol ht dash auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el hydra lv hybrid-mode font-lock+ evil goto-chg dotenv-mode diminish bind-map bind-key async))
  '(projectile-globally-ignored-directories
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".clangd" "build" ".venv"))
  '(projectile-globally-ignored-file-suffixes nil)
  '(projectile-globally-ignored-files '("TAGS" "*.obj" "*.out" "*.elf"))
- '(pylint-options
-   '("--reports=n" "--output-format=parseable"))
- '(python-indent-def-block-scale 1)
- '(python-indent-offset 4)
+ '(pylint-options '("--reports=n" "--output-format=parseable"))
  '(safe-local-variable-values
    '((helm-ctest-dir . "~/ti_workspace_v11/HVP045A/build/")
      (helm-make-arguments . "-j7")
