@@ -68,6 +68,11 @@ Assuntos tratados na disciplina:
     ```
     - Usar arquivo de configuração `.spacemacs` presente na pasta [emacs](emacs/.spacemacs)
       - Salve o arquivo .spacemacs na sua pasta de usuário
+    - Para usar modo `C/C++`, instalar pacote `ccls`:
+    ```bash
+    sudo apt update
+    sudo apt install ccls
+    ```
 
 ## Aula 05 (Teórica)
 - Conceitos:
