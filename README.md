@@ -126,3 +126,25 @@ Assuntos tratados na disciplina:
 
 ## Aula 10 (Prática)
 - Conclusão do trabalho de cálculo do número n da sequência de Fibonacci
+
+## Aula 14 (Prática)
+
+### Módulos Python para seminário
+
+1. datetime 2
+2. scypy + numpy 3
+3. matplotlib 2
+4. pandas 3
+5. postgres + mariadb + mysql 3
+6. control 3
+7. pil 2
+8. opencv 3
+9. simpy 3
+10. flask 3
+
+### Atividade para entrega
+
+Elabore um programa em Python que lê um arquivo separado por vírgulas (,) e muda as vírgulas por ponto e vírgula (;), escrevendo o arquivo final com outro nome.
+
+Envie o link do repositório.
+
