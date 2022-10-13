@@ -3,4 +3,4 @@
 , "afsg,mhaj", "abs," 2
 0.9, 9;2, 2 3, "def;", 12
 0.12, "asd,as", "1,2", 1.2
-0, "ab\"bc;\"de", "asgdte"
+0, "ab\",bc;\"de", "asgdte"
