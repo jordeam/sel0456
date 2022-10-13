@@ -10,7 +10,7 @@
 - Selecionar dispositivo USB
 - Clicar em Flash!
 - Aguardar até concluir
-### Iniciar computador pelo pendrive 
+### Iniciar computador pelo pendrive
 - Usar "Boot Menu" ou configurar BIOS para iniciar pelo pendrive
 - Realizar configuração inicial de idioma e teclado
 ### Redimensionar Partição do Windows
@@ -24,7 +24,7 @@
 	- Usar espaço livre restante
 - SE NÃO PERMITIR A CRIAÇÃO POR LIMITE DE NÚMERO DE PARTIÇÃO
 	- Criar uma partição estendida com o tamanho total do espaço disponível para o Linux, e depois voltar para passos de criar partições EXT4 e swap
-	
+
 ## Iniciar Instalador
 - Prosseguir com configurações:
 	- Localização (São Paulo)
