@@ -140,7 +140,9 @@ Assuntos tratados na disciplina:
 7. pil 2
 8. opencv 3
 9. simpy 3
-10. flask 3
+10. Flask 3
+11. GTK
+
 
 ### Atividade para entrega
 
