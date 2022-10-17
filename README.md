@@ -83,6 +83,15 @@ Assuntos tratados na disciplina:
   - [Exemplo com código para calcular fatorial de n](fact/)
 
 ## Aula 06 (Prática)
+### Atividade para entrega
+Cálculo do termo _n_ da sequência de Fibonacci
+
+- Linguagem utilizada: `C`
+- Tarefas:
+  - Inicialmente, implementar utilizando laços de controle de fluxo (ex: `for`)
+  - Posteriormente, implementar utilizando funções recursivas
+  - A transição entre versões deve ser feita usando recursos de controle de versões (ex: `commit`, `branch`, etc)
+- Serão avaliadas as competências do aluno ao usar ferramenta `git` e plataforma de hospedagem com controle de versões
 
 ## Aula 07 (Teórica)
 - Conceitos:
@@ -99,6 +108,7 @@ Assuntos tratados na disciplina:
     - [Exemplo em Python](oop-python/range.py)
 
 ## Aula 08 (Prática)
+- Continuação do trabalho de cálculo do número _n_ da sequência de Fibonacci
 
 ## Aula 09 (Teórica)
 
@@ -125,7 +135,107 @@ Assuntos tratados na disciplina:
 - Adicionar arquivos ao controle de versões (`add`), "tirar foto" (`commit`) e enviar para remoto (`push`)
 
 ## Aula 10 (Prática)
-- Conclusão do trabalho de cálculo do número n da sequência de Fibonacci
+- Conclusão do trabalho de cálculo do número _n_ da sequência de Fibonacci
+
+## Aula 11 (Teórica)
+
+### Como aprender programação?
+| Aprendizado orientado a tarefas | Aprendizado orientado a componentes |
+|---------------------------------|-------------------------------------|
+| Tutoriais                       | Tipos de dados e operadores         |
+| Exemplos                        | Controle de fluxo                   |
+|                                 | Definição de funções                |
+|                                 | Definição de novos tipos            |
+|                                 | Biblioteca padrão                   |
+
+### Python sob a perspectiva do aprendizado orientado a componentes
+- Tipos de dados:
+  - Numéricos: `int`, `float`, `complex`
+  - Texto: `str`
+  - Booleanos: `bool`
+  - Outros tipos: Sequência, Mapeamento, Binário
+    - [Mais tipos e detalhes](https://www.w3schools.com/python/python_datatypes.asp)
+
+- Tipos de operadores:
+  - Matemáticos: `+`, `-`, `*`, `/`, `**`, `<<`, etc
+  - Booleanos: `or`, `and`, `xor`, `not`, etc
+
+- Controle de fluxo:
+  - Condicional:
+    ```python
+    if bool1:
+        statements
+    elif bool2:
+        statements
+    else
+        statements
+    ```
+  - Laços de repetição:
+    ```python
+    for var in range(n):
+        statements
+    ```
+    ```python
+    while bool1:
+        statements
+    ```
+  - Teste de trecho de código:
+    ```python
+    try:
+        test code
+    except typeerror:
+        statements
+    ```
+  - Abertura de arquivos de texto
+    ```python
+    with open('file.txt','r') as f:
+        handle data in f
+    ```
+
+## Aula 12 (Prática)
+
+### Configuração de ambiente de desenvolvimento integrado (IDE) para `python`
+  - IDE: Emacs com Spacemacs
+    - Para instalar interpretador interativo `ipython`: rodar no terminal
+    ```bash
+    sudo apt update
+    sudo apt install python3-pip ipython3
+    sudo update-alternatives --install /usr/bin/ipython ipython /usr/bin/ipython3 1
+    ```
+    - Para instalar dependências para habilitar recursos de python no Emacs: rodar no terminal
+    ```bash
+    pip install jedi json-rpc service_factory flake8 autoflake
+    ```
+    - Usar arquivo .spacemacs da pasta [emacs](/emacs/.spacemacs)
+    - Comandos no Emacs após editar um programa em `python`:
+      - `C-c C-p`: inicia o interpretador `python`
+      - `C-c C-c`: roda o programa
+      - `C-c C-r`: roda o que está selecionado
+
+### Python sob a perspectiva do aprendizado orientado a componentes (continuação)
+- Definição de funções:
+  - Conferir [exemplo](oop-python/teste.py)
+
+
+## Aula 13 (Teórica)
+
+### Python sob a perspectiva do aprendizado orientado a componentes (continuação)
+- Definição de novos tipos: `class nome:`
+  - Conferir [exemplo](oop-python/range.py)
+    - Declarar variáveis locais ao início
+  - Exemplos de redefinição de operadores para classes:
+    - Redefinir `r+n`: `def __add__(self,v)`
+    - Redefinir `r+=n`: `def __iadd__(self,v)`
+- _Regular Expressions_ (Regex)
+  - Usar pacote `re`:
+  ```python
+  import re
+  re.search('regex_pattern',string)
+  ```
+    - Exemplos de padrão:
+      - `'^a'` começa com letra `a`
+      - `'^[0-9]'` começa com número
+      - `'n'` contém letra `n`
 
 ## Aula 14 (Prática)
 

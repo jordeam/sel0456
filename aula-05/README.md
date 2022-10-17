@@ -15,6 +15,6 @@
 | `git branch nomebranch`       | `b n` nomebranch           | Criar novo ramo de desenvolvimento                  |
 | `git branch -d nomebranch`    | `b k` (selecionar branch)  | Remover ramo de desenvolvimento                     |
 | `git checkout nomebranch`     | `b b` (selecionar branch)  | Mudar de ramo de desenvolvimento                    |
-| `git merge nomebranch`        | `m m` (selecionar branch)  | Unir ramo `nomebranch` ao ramo atual (ex. main)       |
+| `git merge nomebranch`        | `m m` (selecionar branch)  | Unir ramo `nomebranch` ao ramo atual (ex. main)     |
 | `git pull origin`             | `F u`                      | Atualizar a partir de repositório remoto (origin)   |
 | `git push -v origin`          | `P u`                      | Enviar arquivos atualizados para remoto (origin)    |
