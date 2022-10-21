@@ -294,3 +294,5 @@ Foi passado em sala, algumas noções iniciais de [Emacs-LISP](emacs-lisp/tutori
 
 Os alunos puderam rodar os exemplos do tutorial e fazer algumas experimentações com Emacs-LISP dentro do editor Emacs.
 
+Foi explicado alguns conceitos sobre a programação funcional e funções em LISP.s
+
