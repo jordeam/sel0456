@@ -241,6 +241,7 @@ Cálculo do termo _n_ da sequência de Fibonacci
 
 ### Módulos Python para seminário
 
+<!---
 1. datetime 2
 2. scypy + numpy 3
 3. matplotlib 2
@@ -252,6 +253,19 @@ Cálculo do termo _n_ da sequência de Fibonacci
 9. simpy 3
 10. Flask 3
 11. GTK
+-->
+
+| Grupo | Módulo                       | Integrantes | Data do seminário |
+|-------|------------------------------|-------------|-------------------|
+| 1     | `datetime`                   | 2           | 01/11             |
+| 2     | `scipy` + `numpy`            | 3           | 01/11             |
+| 3     | `matplotlib`                 | 2           | 08/11             |
+| 4     | `pandas`                     | 3           | 08/11             |
+| 5     | `postgres`+`mariadb`+`mysql` | 3           | 22/11             |
+| 6     | `control`                    | 3           | 22/11             |
+| 7     | `pil`                        | 2           | 29/11             |
+| 8     | `opencv`                     | 3           | 29/11             |
+| 9     | `simply`                     | 3           | 06/12             |
 
 
 ### Atividade para entrega
