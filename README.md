@@ -267,10 +267,30 @@ Cálculo do termo _n_ da sequência de Fibonacci
 | 8     | `opencv`                     | 3           | 29/11             |
 | 9     | `simply`                     | 3           | 06/12             |
 
+> Os grupos que são formados por 2 integrantes tem que fazer a apresentação em no mínimo 20 minutos e no máximo em 30 minutos.
+
+> Os grupos que tem 3 integrantes tem que fazer a apresentação em no mínimo 30 minutos e no máximo em 40 minutos.
 
 ### Atividade para entrega
 
 Elabore um programa em Python que lê um arquivo separado por vírgulas (,) e muda as vírgulas por ponto e vírgula (;), escrevendo o arquivo final com outro nome.
 
 Envie o link do repositório.
+
+## Aula 15 (Teórica)
+
+## Linguagens funcionais, exemplos em Emacs LISP
+
+A família de linguagens LISP é muito abrangente, tendo uma grande quantidade de dialetos. Pode-se dizer que dentro dela, existem dois grandes grupos:
+
+- LISP propriamente dita, como Common-LISP um dos maiores exemplos; e
+- SCHEME, com vários dialetos como GUILE, Chez-SCHEME, Racket, etc.
+
+Foi passado em sala, algumas noções iniciais de [Emacs-LISP](emacs-lisp/tutorial.el).
+
+## Aula 16 (Prática)
+
+## Emacs-LISP
+
+Os alunos puderam rodar os exemplos do tutorial e fazer algumas experimentações com Emacs-LISP dentro do editor Emacs.
 
