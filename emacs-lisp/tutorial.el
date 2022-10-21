@@ -129,9 +129,8 @@ c ;; representação (a . 2)
 (setcdr c (cdr l))
 c
 
-;; alterando elementos
+;; alterando elementos, utilizando a função setf: essa função é um setter para o
+;; local do getter
 (setf (nth 2 l) 'aqui)
-l
+l ;; verifique os elementos de l
 c ;; note que ele não duplica valores
-
-

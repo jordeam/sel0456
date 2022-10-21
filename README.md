@@ -283,10 +283,10 @@ Envie o link do repositório.
 
 A família de linguagens LISP é muito abrangente, tendo uma grande quantidade de dialetos. Pode-se dizer que dentro dela, existem dois grandes grupos:
 
-- LISP propriamente dita, como Common-LISP um dos maiores exemplos; e
-- SCHEME, com vários dialetos como GUILE, Chez-SCHEME, Racket, etc.
+- **LISP** propriamente dita, tendo como Common-LISP um dos maiores exemplos, seguido do Emacs-LISP; e
+- **SCHEME**, com vários dialetos como GUILE, Chez-SCHEME & Racket, Gerbil & Gambit, etc.
 
-Foi passado em sala, algumas noções iniciais de [Emacs-LISP](emacs-lisp/tutorial.el).
+Foi passado em sala, algumas noções iniciais de [Emacs-LISP](https://www.gnu.org/software/emacs/manual/html_node/eintr/), resumidas em um [tutorial](emacs-lisp/tutorial.el).
 
 ## Aula 16 (Prática)
 
@@ -294,5 +294,5 @@ Foi passado em sala, algumas noções iniciais de [Emacs-LISP](emacs-lisp/tutori
 
 Os alunos puderam rodar os exemplos do tutorial e fazer algumas experimentações com Emacs-LISP dentro do editor Emacs.
 
-Foi explicado alguns conceitos sobre a programação funcional e funções em LISP.s
+Foi explicado alguns conceitos sobre a programação funcional e funções em LISP.
 
