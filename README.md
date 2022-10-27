@@ -294,5 +294,25 @@ Foi passado em sala, algumas noções iniciais de [Emacs-LISP](https://www.gnu.o
 
 Os alunos puderam rodar os exemplos do tutorial e fazer algumas experimentações com Emacs-LISP dentro do editor Emacs.
 
-Foi explicado alguns conceitos sobre a programação funcional e funções em LISP.
+Foi explicado alguns conceitos sobre a programação funcional e funções em LISP, com exemplos no [tutorial](emacs-lisp/tutorial.el).
 
+
+## Aula 17 (Teórica)
+
+### Trabalhando com _buffers_
+O [tutorial sobre manipulação de __buffers_](emacs-lisp/buffer.el) exemplifica comandos básicos para criação de _buffers_, leitura de arquivos, entre outros.
+
+## Aula 18 (Prática)
+
+### Introdução a conceitos de linguagem funcional em Python
+
+
+
+### Atividade para entrega
+
+Elabore um programa em LISP ou Python que lê um arquivo `input.dat`, cujo conteúdo consiste de linhas com dois inteiros cada x, y, separados por vírgula ou espaço.
+O programa deve criar um novo arquivo `output.dat` que contenha o número de Fibonacci X do primeiro número e o fatorial Y do segundo número, respeitando a estrutura:
+
+`Linha n: Fib(x)=X Fact(y)=Y`
+
+Envie o link do repositório.

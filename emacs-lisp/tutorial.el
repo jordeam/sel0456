@@ -137,7 +137,7 @@ c ;; note que ele não duplica valores
 
 ;;
 ;; Funções
-;; 
+;;
 
 ;; Definindo uma função f, o valor retornado é o último a ser executado
 (defun f (x)
