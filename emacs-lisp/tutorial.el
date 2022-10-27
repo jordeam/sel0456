@@ -134,3 +134,87 @@ c
 (setf (nth 2 l) 'aqui)
 l ;; verifique os elementos de l
 c ;; note que ele não duplica valores
+
+;;
+;; Funções
+;; 
+
+;; Definindo uma função f, o valor retornado é o último a ser executado
+(defun f (x)
+  (* x x))
+
+;; invocando f, equivalente a f(2) em Python, por exemplo.
+(f 2)
+
+;; Definindo uma função fatorial
+(defun fact (x)
+  (if (= x 0)
+      1
+    (* x (fact (- x 1)))))
+
+(fact 4)
+(setq l '(1 2 3 4))
+(defun sqr (x) (* x x))
+
+(defun list-quad (l)
+  (and l
+       (cons l (list-quad (cdr l)))))
+l
+(cons l (list (list 1)))
+
+(global-set-key "\C-u" #'undo)
+
+(while cond comd1 cmd2 ...)
+
+(let ((x 5))
+  (while (> x 0)
+    (insert x)
+    (setq x (- x 1))))
+x
+(with-current-buffer "*scratch*"
+  (goto-char 1)
+  (insert " x ")
+  (message (format "point=%d" (point))))
+
+
+
+(list-quad '(1 2 3 4 5))
+
+(list-quad '("abc"  "de" "fghi") #'length)
+(mapcar (lambda (x) (* x x x)) (list 1 2 3 5))
+(defun cube (x)
+  (* x x x))
+(mapcar #'cube (list 1 2 3 5))
+(setq f (lambda (x) (* x x x)))
+(f 2)
+(setq n '())
+
+(let ((x 3)
+      (y 2))
+  (setq x 4)
+  (message (format "x = %d" x))
+  (* x y))
+
+(progn
+  "sempre"
+  "retorna"
+  "o"
+  "último")
+
+(defun fx ()
+  "Documentação da função fx: ela retorna a string 'último'."
+  "sempre"
+  "retorna"
+  "o"
+  "último")
+
+(documentation #'mapcar)
+(documentation #'fx)
+
+(setq w (fx))
+w
+
+(mapcar (lambda (x) (* (car x) (cadr x))) '(( 1 2) (2 3) (4 5)))
+(values 1 2 3)
+
+(mapcar #'sqr '(1 2 3 4))
