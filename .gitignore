@@ -1,3 +1,4 @@
 *.s
 /aula-03/exemplo-asm
 /fact/main
+/emacs-lisp/*.dat

@@ -362,5 +362,3 @@ No final, salve o _buffer_ de saída:
     (save-buffer))
 
 ```
-
-
