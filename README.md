@@ -315,4 +315,51 @@ O programa deve criar um novo arquivo `output.dat` que contenha o número de Fib
 
 `Linha n: Fib(x)=X Fact(y)=Y`
 
-Envie o link do repositório.
+Envie o link do repositório no E-Disciplinas USP.
+
+#### Resolução em Emacs LISP
+
+Para quem optou por utilizar o Emacs LISP, como ele tem algumas vantagens devido ao tipo `buffer`, seguem algumas dicas:
+
+Deve-se trabalhar com dois buffers: b-in (buffer de entrada de dados) e b-out (buffer de saída de dados).
+
+Criando os buffers:
+
+```lisp
+(setq b-in (find-file-noselect "input.dat"))
+(setq b-out (find-file-noselect "output.dat"))
+```
+
+Um conjunto de funções interessantes seria:
+
+```lisp
+(split-string (buffer-substring-no-properties (line-beginning-position) (line-end-position))
+(next-line)
+```
+
+O trecho de código aciuma retorna uma lista com as strings separadas por espaço. Veja que você pode usar outros separadores para `split-string`, no argumento opcional.
+
+Para converter de string para número, use `string-to-number`.
+
+Para varrer todo o buffer de entrada, veja o código
+
+```lisp
+(with-current-buffer b-in
+  (beginning-of-buffer)
+  (while (not (eobp)) ;; eobp retorna verdadeiro para fim de buffer
+    (let ((l1 (split-string (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
+        ;; código para inserir no buffer de saída
+        (with-current-buffer b-out
+        ;; ... use a função insert que tem strings como argumento. A funão format é como o printf, mas ela retorna uma string para a insert
+            ))
+    (next-line)))
+```
+
+No final, salve o buffer de saída:
+
+```lisp
+(with-current-buffer b-out
+    (save-buffer))
+```
+
+
