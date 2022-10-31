@@ -321,9 +321,9 @@ Envie o link do repositório no E-Disciplinas USP.
 
 Para quem optou por utilizar o Emacs LISP, como ele tem algumas vantagens devido ao tipo `buffer`, seguem algumas dicas:
 
-Deve-se trabalhar com dois buffers: b-in (buffer de entrada de dados) e b-out (buffer de saída de dados).
+Deve-se trabalhar com dois _buffers_: b-in (_buffer_ de entrada de dados) e b-out (_buffer_ de saída de dados).
 
-Criando os buffers:
+Criando os _buffers_:
 
 ```lisp
 (setq b-in (find-file-noselect "input.dat"))
@@ -341,7 +341,7 @@ O trecho de código acima retorna uma lista com as strings separadas por espaço
 
 Para converter de string para número, use `string-to-number`.
 
-Para varrer todo o buffer de entrada, veja o código
+Para varrer todo o _buffer_ de entrada, veja o código
 
 ```lisp
 (with-current-buffer b-in
@@ -355,11 +355,12 @@ Para varrer todo o buffer de entrada, veja o código
     (next-line)))
 ```
 
-No final, salve o buffer de saída:
+No final, salve o _buffer_ de saída:
 
 ```lisp
 (with-current-buffer b-out
     (save-buffer))
+
 ```
 
 
