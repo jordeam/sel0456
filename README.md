@@ -337,7 +337,7 @@ Um conjunto de funções interessantes seria:
 (next-line)
 ```
 
-O trecho de código aciuma retorna uma lista com as strings separadas por espaço. Veja que você pode usar outros separadores para `split-string`, no argumento opcional.
+O trecho de código acima retorna uma lista com as strings separadas por espaço. Veja que você pode usar outros separadores para `split-string`, no argumento opcional.
 
 Para converter de string para número, use `string-to-number`.
 
