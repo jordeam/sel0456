@@ -300,7 +300,7 @@ Foi explicado alguns conceitos sobre a programação funcional e funções em LI
 ## Aula 17 (Teórica)
 
 ### Trabalhando com _buffers_
-O [tutorial sobre manipulação de __buffers_](emacs-lisp/buffer.el) exemplifica comandos básicos para criação de _buffers_, leitura de arquivos, entre outros.
+O [tutorial sobre manipulação de _buffers_](emacs-lisp/buffer.el) exemplifica comandos básicos para criação de _buffers_, leitura de arquivos, entre outros.
 
 ## Aula 18 (Prática)
 
