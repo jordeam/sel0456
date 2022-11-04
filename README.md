@@ -350,7 +350,7 @@ Para varrer todo o _buffer_ de entrada, veja o código
     (let ((l1 (split-string (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
         ;; código para inserir no buffer de saída
         (with-current-buffer b-out
-        ;; ... use a função insert que tem strings como argumento. A funão format é como o printf, mas ela retorna uma string para a insert
+        ;; ... use a função insert que tem strings como argumento. A função format é como o printf, mas ela retorna uma string para a insert
             ))
     (next-line)))
 ```
