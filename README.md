@@ -360,5 +360,27 @@ No final, salve o _buffer_ de saída:
 ```lisp
 (with-current-buffer b-out
     (save-buffer))
-
 ```
+
+A solução completa pode ser vista no arquivo [funcional.el](./emacs-lisp/funcional.el), mas não é única, existem muitas variações.
+
+## Aula 19 (Apresentações)
+
+1. `numpy` + `scypy`
+2. `datetime`
+
+## Aula 20 (Apresentações)
+
+1. `matplotlib`
+2. `pandas`
+
+## Aula 21 (Prática)
+
+Teste nos serviços de _git hosting_, como [GitHub](http://github.com) e [GitLab](http://gitlab.com).
+
+## Aula 22 (Prática)
+
+**Gtk + Python + Glade**: construindo aplicativos gráficos com a interface gráfica [Gtk](http://www.gtk.org), tutoriais em [Python GTK+ 3 Tutorial](https://python-gtk-3-tutorial.readthedocs.io/pt_BR/latest/index.html). Atualmente o Gtk está em sua versão 4 (_major version_), porém a distribuição Debian estável utiliza a versão 3.
+
+
+
