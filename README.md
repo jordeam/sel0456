@@ -378,6 +378,42 @@ A solução completa pode ser vista no arquivo [funcional.el](./emacs-lisp/funci
 
 Teste nos serviços de _git hosting_, como [GitHub](http://github.com) e [GitLab](http://gitlab.com).
 
+### Exemplos de automatização de testes usando GitHub Actions
+
+- Para criar teste automático:
+
+No projeto de interesse, acessar a aba Actions. Escolher a ação adequada para o projeto e clicar em Configure.
+
+> Um arquivo de configuração (extensão `.yml`) é criado na pasta `/.github/workflows`.
+
+- Estrutura básica do arquivo de configuração:
+  - Define nome da ação
+  ```yaml
+  name: Exemplo de automatização
+  ```
+  - Define quando realizar as ações (no exemplo, realiza as ações na branch `main` após um Push ou Pull Request)
+  ```yaml
+  on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  ```
+  - Define ambiente de execução e as ações em si (no exemplo, a única ação definida, "Compila programa", é definida pelo comando `make` e é executada no ambiente `ubuntu-latest` -  Ubuntu 20.04)
+  ```yaml
+  jobs:
+    build:
+
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v3
+      - name: Compila programa
+        run: make
+  ```
+    > Possibilidades disponíveis para o campo `runs-on` podem ser vistas [aqui](https://github.com/actions/runner-images).
+
+
 ## Aula 22 (Prática)
 
 **Gtk + Python + Glade**: construindo aplicativos gráficos com a interface gráfica [Gtk](http://www.gtk.org), tutoriais em [Python GTK+ 3 Tutorial](https://python-gtk-3-tutorial.readthedocs.io/pt_BR/latest/index.html). Atualmente o Gtk está em sua versão 4 (_major version_), porém a distribuição Debian estável utiliza a versão 3.
