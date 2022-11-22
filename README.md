@@ -391,7 +391,7 @@ No projeto de interesse, acessar a aba Actions. Escolher a ação adequada para 
   ```yaml
   name: Exemplo de automatização
   ```
-  - Define quando realizar as ações (no exemplo, realiza as ações na _branch_ `main` após um Push ou Pull Request)
+  - Define quando realizar as ações (no exemplo, realiza as ações na branch `main` após um Push ou Pull Request)
   ```yaml
   on:
   push:
