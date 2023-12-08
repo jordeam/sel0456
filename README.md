@@ -294,5 +294,129 @@ Foi passado em sala, algumas noções iniciais de [Emacs-LISP](https://www.gnu.o
 
 Os alunos puderam rodar os exemplos do tutorial e fazer algumas experimentações com Emacs-LISP dentro do editor Emacs.
 
-Foi explicado alguns conceitos sobre a programação funcional e funções em LISP.
+Foi explicado alguns conceitos sobre a programação funcional e funções em LISP, com exemplos no [tutorial](emacs-lisp/tutorial.el).
+
+
+## Aula 17 (Teórica)
+
+### Trabalhando com _buffers_
+O [tutorial sobre manipulação de _buffers_](emacs-lisp/buffer.el) exemplifica comandos básicos para criação de _buffers_, leitura de arquivos, entre outros.
+
+## Aula 18 (Prática)
+
+### Introdução a conceitos de linguagem funcional em Python
+
+
+
+### Atividade para entrega
+
+Elabore um programa em LISP ou Python que lê um arquivo `input.dat`, cujo conteúdo consiste de linhas com dois inteiros cada x, y, separados por vírgula ou espaço.
+O programa deve criar um novo arquivo `output.dat` que contenha o número de Fibonacci X do primeiro número e o fatorial Y do segundo número, respeitando a estrutura:
+
+`Linha n: Fib(x)=X Fact(y)=Y`
+
+Envie o link do repositório no E-Disciplinas USP.
+
+#### Resolução em Emacs LISP
+
+Para quem optou por utilizar o Emacs LISP, como ele tem algumas vantagens devido ao tipo `buffer`, seguem algumas dicas:
+
+Deve-se trabalhar com dois _buffers_: b-in (_buffer_ de entrada de dados) e b-out (_buffer_ de saída de dados).
+
+Criando os _buffers_:
+
+```lisp
+(setq b-in (find-file-noselect "input.dat"))
+(setq b-out (find-file-noselect "output.dat"))
+```
+
+Um conjunto de funções interessantes seria:
+
+```lisp
+(split-string (buffer-substring-no-properties (line-beginning-position) (line-end-position))
+(next-line)
+```
+
+O trecho de código acima retorna uma lista com as strings separadas por espaço. Veja que você pode usar outros separadores para `split-string`, no argumento opcional.
+
+Para converter de string para número, use `string-to-number`.
+
+Para varrer todo o _buffer_ de entrada, veja o código
+
+```lisp
+(with-current-buffer b-in
+  (beginning-of-buffer)
+  (while (not (eobp)) ;; eobp retorna verdadeiro para fim de buffer
+    (let ((l1 (split-string (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
+        ;; código para inserir no buffer de saída
+        (with-current-buffer b-out
+        ;; ... use a função insert que tem strings como argumento. A função format é como o printf, mas ela retorna uma string para a insert
+            ))
+    (next-line)))
+```
+
+No final, salve o _buffer_ de saída:
+
+```lisp
+(with-current-buffer b-out
+    (save-buffer))
+```
+
+A solução completa pode ser vista no arquivo [funcional.el](./emacs-lisp/funcional.el), mas não é única, existem muitas variações.
+
+## Aula 19 (Apresentações)
+
+1. `numpy` + `scypy`
+2. `datetime`
+
+## Aula 20 (Apresentações)
+
+1. `matplotlib`
+2. `pandas`
+
+## Aula 21 (Prática)
+
+Teste nos serviços de _git hosting_, como [GitHub](http://github.com) e [GitLab](http://gitlab.com).
+
+### Exemplos de automatização de testes usando GitHub Actions
+
+- Para criar teste automático:
+
+No projeto de interesse, acessar a aba Actions. Escolher a ação adequada para o projeto e clicar em Configure.
+
+> Um arquivo de configuração (extensão `.yml`) é criado na pasta `/.github/workflows`.
+
+- Estrutura básica do arquivo de configuração:
+  - Define nome da ação
+  ```yaml
+  name: Exemplo de automatização
+  ```
+  - Define quando realizar as ações (no exemplo, realiza as ações na branch `main` após um Push ou Pull Request)
+  ```yaml
+  on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  ```
+  - Define ambiente de execução e as ações em si (no exemplo, a única ação definida, "Compila programa", é definida pelo comando `make` e é executada no ambiente `ubuntu-latest` -  Ubuntu 20.04)
+  ```yaml
+  jobs:
+    build:
+
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v3
+      - name: Compila programa
+        run: make
+  ```
+    > Possibilidades disponíveis para o campo `runs-on` podem ser vistas [aqui](https://github.com/actions/runner-images).
+
+
+## Aula 22 (Prática)
+
+**Gtk + Python + Glade**: construindo aplicativos gráficos com a interface gráfica [Gtk](http://www.gtk.org), tutoriais em [Python GTK+ 3 Tutorial](https://python-gtk-3-tutorial.readthedocs.io/pt_BR/latest/index.html). Atualmente o Gtk está em sua versão 4 (_major version_), porém a distribuição Debian estável utiliza a versão 3.
+
+
 

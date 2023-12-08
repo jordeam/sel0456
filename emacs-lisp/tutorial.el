@@ -134,3 +134,102 @@ c
 (setf (nth 2 l) 'aqui)
 l ;; verifique os elementos de l
 c ;; note que ele não duplica valores
+
+;;
+;; Funções
+;;
+
+;; Definindo uma função f, o valor retornado é o último a ser executado
+(defun f (x)
+  (* x x))
+
+;; invocando f, equivalente a f(2) em Python, por exemplo.
+(f 2)
+
+;; Definindo uma função fatorial
+(defun fact (x)
+  (if (or (= x 0) (= x 1))
+      1
+    (* x (fact (- x 1)))))
+
+;; Chamando a função:
+(fact 4)
+
+;; Usando recursividade com listas
+(setq l '(1 2 3 4))
+(defun sqr (x) (* x x))
+
+(defun list-quad (l)
+  (and l
+       (cons l (list-quad (cdr l)))))
+
+(list-quad l)
+
+;; alterando a estrutura de listas
+(cons l (list (list 1)))
+
+;; redefinindo uma tecla
+(global-set-key "\C-u" #'undo)
+
+;; escrevendo em buffers e posições
+(with-current-buffer "*scratch*"
+  (goto-char 1)
+  (insert " x ")
+  (message (format "point=%d" (point))))
+
+
+;; funções anônimas lambda e mapcar a função mapcar aplica uma função em cada um
+;; dos elementos da lista e retorna o resultado da aplicação em outra lista
+(mapcar (lambda (x) (* x x x)) (list 1 2 3 5))
+
+;; equivalente a:
+(defun cube (x) (* x x x))
+(mapcar #'cube (list 1 2 3 5))
+
+;; atribuindo uma função anônima a um símbolo
+(setq f (lambda (x) (* x x x)))
+(f 2)
+
+;; equivalente nil (vazio)
+(setq n '())
+
+
+;; Controle de fluxo
+(while cond cmd1 cmd2 ...)
+
+;; usando while e ambientes (environments)
+;; x é definido somente dentro do let
+(let ((x 5))
+  (while (> x 0)
+    (insert (+ x ?0))
+    (setq x (- x 1))))
+
+;; erro se for feito o eval da proxima sentença
+x
+
+;; ambientes
+(let ((x 3)
+      (y 2))
+  (setq x 4)
+  (message (format "x = %d" x))
+  (* x y))
+
+;; sequência de comandos sem ambiente
+(progn
+  "sempre"
+  "retorna"
+  "o"
+  "último")
+
+;; documentação de funções
+(defun fx ()
+  "Documentação da função fx: ela retorna a string 'último'."
+  "sempre"
+  "retorna"
+  "o"
+  "último")
+
+;; pesquisando sobre as funções e documentações
+(documentation #'mapcar)
+(documentation #'fx)
+
