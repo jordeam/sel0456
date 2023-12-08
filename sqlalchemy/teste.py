@@ -1,3 +1,6 @@
+# pip install sqlalchemy datetime psycopg2
+#
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, Integer, Text, create_engine
@@ -10,7 +13,7 @@ url = URL.create(
     drivername="postgresql",
     username="jrm",
     host="127.0.0.1",
-    password='x',  # alter user jrm password 'x';
+    password='x',  # psql teste: alter user jrm password 'x';
     database="teste"
 )
 
